@@ -1,0 +1,234 @@
+﻿<div ng-controller="AssignedAssetsCtrl"
+     ng-init="AssignedAssets.Load()"
+     class="padding-0">
+    <div layout="row"
+         layout-align="start center">
+        <div>
+            <md-icon class="material-icons"
+                     aria-label="Assigned Assets"
+                     alt="Assigned Assets"
+                     aria-hidden="true">
+                how_to_reg
+            </md-icon>
+        </div>
+        <div>
+            <span class="md-title">Assigned Assets</span>
+        </div>
+    </div>
+    <div layout="row"
+         layout-align="end center">
+        <div>
+            <md-menu>
+                <md-button aria-label="Actions" class="md-icon-button md-primary" ng-mouseenter="AssignedAssets.MouseHover($mdMenu, $event)">
+                    <md-icon class="material-icons"
+                             aria-label="Actions"
+                             alt="Actions"
+                             aria-hidden="true">
+                        list
+                    </md-icon>
+                </md-button>
+                <md-menu-content width="3"
+                                 class="padding-0"
+                                 ng-mouseleave="$mdMenu.close()">
+                    <md-menu-item>
+                        <md-button class="md-primary"
+                                   ng-click="AssignedAssets.Surrender($event)">
+                            <md-icon class="material-icons"
+                                     aria-label="Surrender"
+                                     alt="Surrender"
+                                     aria-hidden="true">
+                                settings_backup_restore
+                            </md-icon>
+                            Surrender
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button class="md-primary"
+                                   ng-click="AssignedAssets.Generate($event)">
+                            <md-icon class="material-icons"
+                                     aria-label="Print"
+                                     alt="Print"
+                                     aria-hidden="true">
+                                print
+                            </md-icon>
+                            MR
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button class="md-primary"
+                                   ng-click="AssignedAssets.ExportToExcel($event)">
+                            <md-icon md-font-set="fa"
+                                     md-font-icon="fa-file-excel-o"></md-icon>
+                            Export
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </div>
+    </div>
+    <div layout="column">
+        <div class="padding-l8r9">
+            <md-progress-linear class="md-hue-1"
+                                md-mode="indeterminate"
+                                ng-disabled="isDisabled">
+            </md-progress-linear>
+        </div>
+        <div>
+            <table id="TblAssignedAssets" class="mdl-data-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Assigned To</th>
+                        <th>Position</th>
+                        <th>Asset Code</th>
+                        <th>Description</th>
+                        <th>UOM</th>
+                        <th>Quantity</th>
+                        <th>Serial #</th>
+                        <th>Unit Cost</th>
+                        <th>Date In Service</th>
+                        <th>Usefull Life</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <div class="md-dialog">
+        <div class="md-dialog-container" 
+             id="Surrender">
+            <md-dialog aria-label="Surrender" class="md-dialog-md">
+                <md-toolbar class="bg-blue">
+                    <div class="md-toolbar-tools">
+                        <h2>Surrender</h2>
+                        <span flex></span>
+                        <md-button class="md-icon-button" 
+                                   ng-click="cancel()">
+                            <md-icon class="material-icons"
+                                     aria-label="Close"
+                                     alt="Close"
+                                     aria-hidden="true">
+                                close
+                            </md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-dialog-content>
+                    <div class="padding-0"
+                         layout-gt-sm="row"
+                         layout-align="start center">
+                        <div flex-gt-sm>
+                            <md-input-container class="md-block">
+                                <label>Asset Code</label>
+                                <input ng-model="AssetCode"
+                                       disabled>
+                            </md-input-container>
+                        </div>
+                        <div flex-gt-sm>
+                            <md-input-container class="md-block">
+                                <label>Serial #</label>
+                                <input ng-model="Serial"
+                                       disabled>
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div class="padding-0"
+                         layout-gt-sm="row"
+                         layout-align="start center">
+                        <div flex-gt-sm>
+                            <md-input-container class="md-block">
+                                <label>Description</label>
+                                <input ng-model="Description"
+                                       disabled>
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div class="padding-0"
+                         layout-gt-sm="column">
+                        <div class="padding-t6">
+                            <md-datepicker ng-model="TransDate"
+                                           md-placeholder="Enter date"
+                                           md-open-on-focus
+                                           class="md-primary"></md-datepicker>
+                        </div>
+                        <div class="padding-t21"
+                             flex-gt-sm>
+                            <md-input-container class="md-block">
+                                <label>Remarks</label>
+                                <textarea ng-model="Remarks"
+                                          rows="5"></textarea>
+                            </md-input-container>
+                        </div>
+                    </div>
+                </md-dialog-content>
+                <md-dialog-actions layout="row" layout-align="center center">
+                    <md-button class="md-raised  md-primary" ng-click="AssignedAssets.Submit($event)">
+                        Submit
+                    </md-button>
+                </md-dialog-actions>
+            </md-dialog>
+        </div>
+    </div>
+    <div class="md-dialog">
+        <div class="md-dialog-container" 
+             id="ExportExcel">
+            <md-dialog aria-label="Export">
+                <md-toolbar class="bg-blue">
+                    <div class="md-toolbar-tools">
+                        <h2>Export To Excel</h2>
+                        <span flex></span>
+                        <md-button class="md-icon-button" 
+                                   ng-click="cancel()">
+                            <md-icon class="material-icons"
+                                     aria-label="Close"
+                                     alt="Close"
+                                     aria-hidden="true">
+                                close
+                            </md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-dialog-content>
+                    <div class="padding-0"
+                         layout-gt-sm="column">
+                        <div flex-gt-sm>
+                            <md-switch ng-model="IsAll" 
+                                       class="md-primary"
+                                       aria-label="Is All">
+                                All Assigned
+                            </md-switch>
+                        </div>
+                        <div flex-gt-sm>
+                            <div layout-gt-sm="row">
+                                <div>
+                                    <md-datepicker ng-model="FromDate"
+                                                   md-placeholder="From Date"
+                                                   md-open-on-focus
+                                                   ng-disabled="IsAll"
+                                                   class="md-primary"></md-datepicker>
+                                </div>
+                                <div>
+                                    &nbsp;
+                                </div>
+                                <div>
+                                    <md-datepicker ng-model="ToDate"
+                                                   md-placeholder="To Date"
+                                                   md-open-on-focus
+                                                          ng-disabled="IsAll"
+                                                   class="md-primary"></md-datepicker>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </md-dialog-content>
+                <md-dialog-actions layout="row" layout-align="center center">
+                    <md-button class="md-raised  md-primary" ng-click="AssignedAssets.Export($event)">
+                        Export
+                    </md-button>
+                </md-dialog-actions>
+            </md-dialog>
+        </div>
+    </div>
+</div>

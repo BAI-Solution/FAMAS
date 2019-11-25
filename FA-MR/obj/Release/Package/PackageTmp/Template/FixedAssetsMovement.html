@@ -1,0 +1,139 @@
+﻿<div ng-controller="FixedAssetsMovementCntrl"
+     ng-init="FAM.Load()"
+     class="padding-0">
+    <div layout="row"
+         layout-align="start center">
+        <div>
+            <md-icon class="material-icons"
+                     aria-label="Fixed Assets Movement"
+                     alt="Fixed Assets Movement"
+                     aria-hidden="true">
+                dvr
+            </md-icon>
+        </div>
+        <div>
+            <h6 class="md-title">Fixed Assets Movement</h6>
+        </div>
+    </div>
+    <div layout="row" layout-align="end center">
+        <div>
+            <md-button class="md-icon-button md-primary"
+                       ng-click="FAM.ViewMovement($event)">
+                <md-tooltip class="tooltip"
+                            md-autohide="true"
+                            md-direction="top">View Movement</md-tooltip>
+                <md-icon class="material-icons"
+                         aria-label="View Movement"
+                         alt="View Movement"
+                         aria-hidden="true">
+                    find_in_page
+                </md-icon>
+            </md-button>
+        </div>
+    </div>
+    <div layout="column">
+        <div class="padding-l8r9">
+            <md-progress-linear class="md-hue-1"
+                                md-mode="indeterminate"
+                                ng-disabled="isDisabled">
+            </md-progress-linear>
+        </div>
+        <div>
+            <table id="TblFAM" class="mdl-data-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Assigned To</th>
+                        <th>Asset Code</th>
+                        <th>Description</th>
+                        <th>UOM</th>
+                        <th>Quantity</th>
+                        <th>Serial #</th>
+                        <th>Unit Cost</th>
+                        <th>Date In Service</th>
+                        <th>Usefull Life</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <div class="md-dialog">
+        <div class="md-dialog-container" id="AssetMovement">
+            <md-dialog aria-label="Asset Movement" class="md-dialog-lg">
+                <md-toolbar class="bg-blue">
+                    <div class="md-toolbar-tools">
+                        <h2>Asset Movement</h2>
+                        <span flex></span>
+                        <md-button class="md-icon-button" ng-click="cancel()">
+                            <md-icon class="material-icons"
+                                     aria-label="Close"
+                                     alt="Close"
+                                     aria-hidden="true">
+                                close
+                            </md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-dialog-content>
+                    <div class="padding-0"
+                         layout-gt-sm="row"
+                         layout-align="start center">
+                        <div flex-gt-sm>
+                            <md-input-container class="md-block">
+                                <label>Asset Code</label>
+                                <input ng-model="AssetCode"
+                                       disabled>
+                            </md-input-container>
+                        </div>
+                        <div flex-gt-sm>
+                            <md-input-container class="md-block">
+                                <label>Serial #</label>
+                                <input ng-model="Serial"
+                                       disabled>
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div class="padding-0"
+                         layout-gt-sm="row"
+                         layout-align="start center">
+                        <div flex-gt-sm>
+                            <md-input-container class="md-block">
+                                <label>Description</label>
+                                <input ng-model="Description"
+                                       disabled>
+                            </md-input-container>
+                        </div>
+                        <md-button class="md-icon-button md-primary"
+                                   ng-click="FAM.Generate($event)">
+                            <md-tooltip class="tooltip"
+                                        md-autohide="true"
+                                        md-direction="top">Generate MR</md-tooltip>
+                            <md-icon class="material-icons"
+                                     aria-label="Print"
+                                     alt="Print"
+                                     aria-hidden="true">
+                                print
+                            </md-icon>
+                        </md-button>
+                    </div>
+                    <table id="TblMovement" class="mdl-data-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>MR #</th>
+                                <th>Accountability</th>
+                                <th>Position</th>
+                                <th>Department</th>
+                                <th>Transaction Type</th>
+                                <th>Transaction Date</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </md-dialog-content>
+            </md-dialog>
+        </div>
+    </div>
+</div>

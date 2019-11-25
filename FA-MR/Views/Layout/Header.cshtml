@@ -1,0 +1,40 @@
+﻿@{
+    var _user = Session["Users"] as FA_MR.Models.MUsers;
+}
+<div class="page-header"
+     layout="row" 
+     layout-align="end center"
+     flex>
+    <md-fab-speed-dial md-direction="down" 
+                       class="md-fling profile">
+        <md-fab-trigger>
+            <md-button class="md-fab"
+                       aria-label="Profile">
+                @{
+                    if (!string.IsNullOrEmpty(_user.PICT))
+                    {
+                        <img src="@_user.PICT" class="md-avatar">
+                    }
+                    else
+                    {
+                        <img src="~/Content/Image/default_user.png" class="md-avatar">
+                    }
+                }
+            </md-button>
+        </md-fab-trigger>
+        <md-fab-actions>
+            <md-button class="md-fab md-primary"
+                       ng-click="Account.Logout()">
+                <md-tooltip class="tooltip"
+                            md-autohide="true"
+                            md-direction="left">Logout</md-tooltip>
+                <md-icon class="material-icons"
+                         aria-label="AssignAsset"
+                         alt="AssignAsset"
+                         aria-hidden="true">
+                    power_settings_new
+                </md-icon>
+            </md-button>
+        </md-fab-actions>
+    </md-fab-speed-dial>
+</div>

@@ -1,0 +1,12 @@
+D:\Projects\FA-MR\20190227\GlobalObject\bin\Debug\GlobalObject.dll
+D:\Projects\FA-MR\20190227\GlobalObject\bin\Debug\GlobalObject.pdb
+D:\Projects\FA-MR\20190227\GlobalObject\obj\Debug\GlobalObject.csprojAssemblyReference.cache
+D:\Projects\FA-MR\20190227\GlobalObject\obj\Debug\GlobalObject.csproj.CoreCompileInputs.cache
+D:\Projects\FA-MR\20190227\GlobalObject\obj\Debug\GlobalObject.dll
+D:\Projects\FA-MR\20190227\GlobalObject\obj\Debug\GlobalObject.pdb
+D:\Projects\FA-MR\GlobalObject\bin\Debug\GlobalObject.dll
+D:\Projects\FA-MR\GlobalObject\bin\Debug\GlobalObject.pdb
+D:\Projects\FA-MR\GlobalObject\obj\Debug\GlobalObject.csproj.CoreCompileInputs.cache
+D:\Projects\FA-MR\GlobalObject\obj\Debug\GlobalObject.dll
+D:\Projects\FA-MR\GlobalObject\obj\Debug\GlobalObject.pdb
+D:\Projects\FA-MR\GlobalObject\obj\Debug\GlobalObject.csprojAssemblyReference.cache

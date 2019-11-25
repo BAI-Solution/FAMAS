@@ -1,0 +1,277 @@
+﻿body {
+    background-image: url('Image/bg_body.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Mallanna";
+    font-size: 1.1em;
+    color: #232323;
+}
+md-content, md-dialog, md-select-menu {
+    border-radius: 10px !important;
+    padding: 0px !important;
+}
+.page-body {
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    bottom: 0px;
+}
+.page-header {
+    background-color: #f4c430;
+    position: absolute;
+    width: 95%;
+    left: 5%;
+    min-height: 50px !important;
+    max-height: 50px !important;
+}
+.page-container {
+    position: absolute;
+    width: 95%;
+    left: 5%;
+    top: 50px;
+    bottom: 0px;
+    overflow-y: auto;
+    padding: 50px 50px;
+}
+.page-content {
+    padding: 2px 10px !important;
+    background-color: rgba(250,250,250, .6) !important;
+    box-shadow: 0px 15px 50px -15px rgb(105,105,105);
+}
+.aside {
+    background-color: rgba(54,59,66,.1) !important;
+}
+.aside > md-content {
+    background-color: rgba(54,59,66,.0) !important;
+}
+.aside-logo {
+    background-color: rgba(0,0,0,0.38) !important;
+    /*background-color: rgb(184, 202, 224);*/
+    /*background-color: rgb(176, 196, 222);*/
+    border-bottom: 1px solid rgb(176, 196, 222);
+    min-height: 50px !important;
+    max-height: 50px !important;
+}
+.aside-logo > a {
+    width: 100% !important;
+    border-radius: 0px;
+    min-height: 50px !important;
+    max-height: 50px !important;
+}
+.aside > md-content {
+    overflow-x: hidden;
+    width: 100% !important;
+}
+.aside > section > .md-button {
+    min-width: 100%;
+    max-width: 100%;
+    border-radius: 0px;
+    margin: 0px;
+}
+.aside > section > .active {
+    background-color: rgba(158,158,158,0.6);
+}
+.tooltip {
+    font-size: .8em !important;
+}
+.account-content > button {
+    width: 100% !important;
+}
+.profile {
+    position:relative !important;
+    top:38px !important;
+}
+.profile > md-fab-trigger > button {
+    width: 50px !important;
+    height: 50px !important;
+}
+.profile > md-fab-trigger > button > img {
+    position: relative !important;
+    min-width: 50px !important;
+    min-height: 50px !important;
+    top: -4px !important;
+    left: -6px !important;
+    border-radius: 50px;
+}
+md-menu-content {
+    padding: 0px !important;
+}
+.md-open-menu-container {
+    border-radius: 10px !important;
+}
+#menu_container_4 {
+    top: 50px !important;
+}
+/*Modal*/
+md-dialog-content {
+    padding: 5px 10px !important;
+}
+@media screen and (min-width: 992px) {
+    .md-dialog-lg {
+        width: 900px !important;
+    }
+}
+@media screen and (min-width: 992px) {
+    .md-dialog-lg {
+        width: 900px !important;
+    }
+}
+@media screen and (min-width: 768px) {
+    .md-dialog-md {
+        width: 768px !important;
+    }
+}
+.md-dialog {
+    visibility: hidden;
+}
+.layout-align-start-center > div {
+    padding-right: 10px;
+}
+.error > div > i {
+    color: #dc3545 !important;
+    font-size: 50px !important;
+}
+.error > div > h6 {
+    margin: 6px !important;
+}
+.success > div > i {
+    color: #3CB371 !important;
+    font-size: 50px !important;
+}
+.success > div > h6 {
+    margin: 6px !important;
+}
+/*Table*/
+.mdl-data-table {
+    width: 100% !important;
+}
+.mdl-data-table > thead {
+    background-color: #4682b4;
+}
+.mdl-data-table > thead > tr > th {
+    color: #fff;
+}
+.mdl-data-table > tbody > tr > td {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+/*Filter*/
+.dataTables_filter > label > input {
+    -webkit-box-ordinal-group: 3;
+    order: 2;
+    display: block;
+    margin-top: 0;
+    background: none;
+    padding: 2px 2px 1px;
+    border-width: 0 0 1px;
+    line-height: 26px;
+    height: 30px;
+    border-radius: 0;
+    border-style: solid;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 0 !important;
+    border-top: none !important;
+    border-right: none !important;
+    border-left: none !important;
+    box-shadow: none !important;
+    border-color: rgba(0,0,0,0.12);
+    color: rgba(0,0,0,0.38);
+}
+.dataTables_filter > label > input:focus {
+    outline-width: 0;
+    border-bottom: solid 2px #4682b4;
+}
+.dataTables_filter > label {
+    color: rgba(0,0,0,0.38);
+}
+.mdl-grid {
+    padding: 0px !important;
+}
+.dataTables_length > label > select {
+    -webkit-box-ordinal-group: 3;
+    order: 2;
+    display: block;
+    margin-top: 0;
+    background: none;
+    padding: 2px 2px 1px;
+    border-width: 0 0 1px;
+    line-height: 26px;
+    height: 30px;
+    border-radius: 0;
+    border-style: solid;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 0 !important;
+    border-top: none !important;
+    border-right: none !important;
+    border-left: none !important;
+    box-shadow: none !important;
+    border-color: rgba(0,0,0,0.12);
+    color: rgba(0,0,0,0.38);
+}
+.dataTables_length > label > select:focus {
+    outline-width: 0;
+    border-bottom: solid 2px #4682b4;
+}
+.dataTables_length > label {
+    color: rgba(0,0,0,0.38);
+}
+.select-checkbox {
+    cursor: pointer !important;
+}
+table.dataTable tbody td.select-checkbox:before, table.dataTable tbody th.select-checkbox:before {
+    margin-top: 0px !important;
+}
+table.dataTable tr.selected td.select-checkbox:after, table.dataTable tr.selected th.select-checkbox:after {
+    margin-top: -5px !important;
+}
+/*Pagination*/
+.mdl-button {
+    padding: 8px 10px !important;
+    min-width: 0px !important;
+}
+.mdl-button--raised.mdl-button--colored {
+    background: #4682b4 !important;
+}
+/*Checkbox*/
+table.dataTable tbody > tr.selected, table.dataTable tbody > tr > .selected {
+    background-color: #dae7f1 !important;
+}
+table.dataTable.display tbody > tr.odd.selected > .sorting_1, table.dataTable.order-column.stripe tbody > tr.odd.selected > .sorting_1 {
+   background-color: transparent !important;
+}
+table.dataTable.display tbody > tr.even.selected > .sorting_1, table.dataTable.order-column.stripe tbody > tr.even.selected > .sorting_1 {
+    background-color: transparent !important;
+}
+/*BackgroundWorker*/
+div > md-progress-linear {
+    position: relative !important;
+    top: 119px;
+    z-index: 1;
+}
+@media (max-width: 768px) {
+    div > md-progress-linear {
+        top: 163px;
+    }
+}
+/*Text*/
+.text-warp {
+    word-wrap: break-word !important;
+}
+.text-center {
+    text-align: center !important;
+}
+.text-left {
+    text-align: left !important;
+}
+/*Display*/
+.display-none {
+    display: none;
+}
+/*Font Awesome*/
+.fa {
+    font-size: 20px !important;
+    text-align: center !important
+}

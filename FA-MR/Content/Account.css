@@ -1,0 +1,16 @@
+﻿.account-wrap {
+    max-width: 450px !important;
+    width: 100%;
+    padding-top: 17vh;
+    margin: 0 auto;
+}
+.account-content {
+    background: #fff;
+    padding: 30px 30px 20px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}

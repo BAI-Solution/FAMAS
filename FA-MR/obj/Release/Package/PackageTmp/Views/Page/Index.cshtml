@@ -1,0 +1,113 @@
+﻿@{
+    var _user = Session["Users"] as FA_MR.Models.MUsers;
+}
+<div class="page-body"
+     layout="row"
+     layout-nowrap
+     ng-init="Account.Load('@_user.FULL')">
+    <div class="aside"
+         flex="5">
+        <div class="aside-logo"
+             layout="column"
+             layout-align="center center">
+            <a href="#!/FixedAssets" class="md-button">
+                <img src="~/Content/Image/famas.png" class="md-avatar" width="50" height="50">
+            </a>
+        </div>
+        <section layout="column"
+                 layout-align="center center">
+            @RenderPage("~/Views/Layout/AsideLeft.cshtml")
+        </section>
+    </div>
+    <div flex
+         id="dialogContainer">
+        <div layout="column">
+            @RenderPage("~/Views/Layout/Header.cshtml")
+            <div class="page-container"
+                 flex>
+                <md-content class="page-content"
+                            ng-view
+                            flex
+                            layout-padding>
+                </md-content>
+            </div>
+        </div>
+        <div class="md-dialog">
+            <div class="md-dialog-container" id="Error">
+                <md-dialog aria-label="Error">
+                    <md-dialog-content>
+                        <div layout="column"
+                             class="error"
+                             layout-align="center center">
+                            <div>
+                                <i class="material-icons"
+                                   aria-label="Warning"
+                                   alt="Warning"
+                                   aria-hidden="true">
+                                    warning
+                                </i>
+                            </div>
+                            <div>
+                                <h6 class="md-title">Message</h6>
+                            </div>
+                            <div ng-bind="ErrorMsg"></div>
+                        </div>
+                    </md-dialog-content>
+                    <md-dialog-actions layout="row" layout-align="end center">
+                        <md-button class="md-primary" ng-click="cancel()">
+                            Got it!
+                        </md-button>
+                    </md-dialog-actions>
+                </md-dialog>
+            </div>
+        </div>
+        <div class="md-dialog">
+            <div class="md-dialog-container" id="Success">
+                <md-dialog aria-label="Success">
+                    <md-dialog-content>
+                        <div layout="column"
+                             class="success"
+                             layout-align="center center">
+                            <div>
+                                <i class="material-icons"
+                                   aria-label="Success"
+                                   alt="Success"
+                                   aria-hidden="true">
+                                    check_circle
+                                </i>
+                            </div>
+                            <div>
+                                <h6 class="md-title">Message</h6>
+                            </div>
+                            <div ng-bind="SuccessMsg"></div>
+                        </div>
+                    </md-dialog-content>
+                    <md-dialog-actions layout="row" layout-align="end center">
+                        <md-button class="md-primary" ng-click="cancel()">
+                            Okay!
+                        </md-button>
+                    </md-dialog-actions>
+                </md-dialog>
+            </div>
+        </div>
+        <div class="md-dialog">
+            <div class="md-dialog-container" id="Wait">
+                <md-dialog aria-label="Wait">
+                    <md-dialog-content>
+                        <div layout="row"
+                             layout-align="center center">
+                            <div>
+                                <span class="md-subhead">
+                                    Please Wait
+                                </span>
+                            </div>
+                        </div>
+                        <md-progress-linear class="md-hue-1"
+                                            md-mode="indeterminate">
+                        </md-progress-linear>
+                    </md-dialog-content>
+                </md-dialog>
+            </div>
+        </div>
+    </div>
+</div>

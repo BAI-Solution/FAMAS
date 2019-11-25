@@ -1,0 +1,11 @@
+D:\Projects\FA-MR\GlobalObject\bin\Release\GlobalObject.dll
+D:\Projects\FA-MR\GlobalObject\bin\Release\GlobalObject.pdb
+D:\Projects\FA-MR\GlobalObject\obj\Release\GlobalObject.csproj.CoreCompileInputs.cache
+D:\Projects\FA-MR\GlobalObject\obj\Release\GlobalObject.dll
+D:\Projects\FA-MR\GlobalObject\obj\Release\GlobalObject.pdb
+D:\Projects\FA-MR\20190227\GlobalObject\bin\Release\GlobalObject.dll
+D:\Projects\FA-MR\20190227\GlobalObject\bin\Release\GlobalObject.pdb
+D:\Projects\FA-MR\20190227\GlobalObject\obj\Release\GlobalObject.csproj.CoreCompileInputs.cache
+D:\Projects\FA-MR\20190227\GlobalObject\obj\Release\GlobalObject.dll
+D:\Projects\FA-MR\20190227\GlobalObject\obj\Release\GlobalObject.pdb
+D:\Projects\FA-MR\GlobalObject\obj\Release\GlobalObject.csprojAssemblyReference.cache

@@ -1,0 +1,13 @@
+﻿@using GlobalObject
+<div class="account-wrap"
+     ng-controller="AccountCtrl">
+    <div class="account-content"
+         layout="column" l
+         ayout-align="center center">
+        <div class="text-warp">
+            @Html.Raw(TempData["msg"])
+        </div>
+        <md-button class="md-caption md-raised md-warn"
+                   ng-click="Account.SignIn('@SystemConfig.MicrosoftId', '@SystemConfig.RedirectURI')">Sign in with Office 365</md-button>
+    </div>
+</div>

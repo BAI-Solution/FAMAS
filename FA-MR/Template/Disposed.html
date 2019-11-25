@@ -1,0 +1,42 @@
+﻿<div ng-controller="DisposedCntrl"
+     ng-init="Dispose.Load()"
+     class="padding-0">
+    <div layout="row"
+         layout-align="start center">
+        <div>
+            <md-icon class="material-icons"
+                     aria-label="Disposed"
+                     alt="Disposed"
+                     aria-hidden="true">
+                delete_forever
+            </md-icon>
+        </div>
+        <div>
+            <span class="md-title">Disposed</span>
+        </div>
+    </div>
+    <div layout="column">
+        <div class="padding-l8r9">
+            <md-progress-linear class="md-hue-1"
+                                md-mode="indeterminate"
+                                ng-disabled="isDisabled">
+            </md-progress-linear>
+        </div>
+        <div>
+            <table id="TblDisposed" class="mdl-data-table">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>UOM</th>
+                        <th>Quantity</th>
+                        <th>Serial #</th>
+                        <th>Unit Cost</th>
+                        <th>Date In Service</th>
+                        <th>Usefull Life</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>

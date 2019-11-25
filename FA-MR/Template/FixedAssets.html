@@ -1,0 +1,448 @@
+﻿<div ng-controller="FixedAssetsCtrl"
+     ng-init="FixedAsset.Load()"
+     class="padding-0">
+    <div layout="row"
+         layout-align="start center">
+        <div>
+            <md-icon class="material-icons"
+                     aria-label="FixedAssets"
+                     alt="FixedAssets"
+                     aria-hidden="true">
+                devices
+            </md-icon>
+        </div>
+        <div>
+            <span class="md-title">Fixed Assets</span>
+        </div>
+    </div>
+    <div layout="row"
+         layout-align="end center">
+        <div>
+            <md-input-container class="md-block">
+                <label>Assets Groups</label>
+                <md-select ng-model="AssetGroup" ng-change="FixedAsset.ChangeGroups(0)">
+                    <md-option ng-value="ag.AGRP"
+                               ng-repeat="ag in AssetsGoups">{{ ag.AGRP }}</md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+        <div>
+            <md-input-container class="md-block">
+                <label>Assets Types</label>
+                <md-select ng-model="AssetType" ng-change="FixedAsset.ChangeTypes()">
+                    <md-option ng-value="at.ATYP"
+                               ng-repeat="at in AssetsTypes">{{ at.ATYP }}</md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+        <div>
+            <md-menu>
+                <md-button aria-label="Actions" class="md-icon-button md-primary" ng-mouseenter="FixedAsset.MouseHover($mdMenu, $event)">
+                    <md-icon class="material-icons"
+                             aria-label="Actions"
+                             alt="Actions"
+                             aria-hidden="true">
+                        list
+                    </md-icon>
+                </md-button>
+                <md-menu-content width="3"
+                                 class="padding-0"
+                                 ng-mouseleave="$mdMenu.close()">
+                    <md-menu-item>
+                        <md-button class="md-primary"
+                                   ng-click="FixedAsset.Assign($event)">
+                            <md-icon class="material-icons"
+                                     aria-label="AssignAsset"
+                                     alt="AssignAsset"
+                                     aria-hidden="true">
+                                person_pin
+                            </md-icon>
+                            Assign Asset Item
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button class="md-primary"
+                                   ng-click="FixedAsset.AddAsset($event)">
+                            <md-icon class="material-icons"
+                                     aria-label="Add"
+                                     alt="Add Asset Item"
+                                     aria-hidden="true">
+                                add
+                            </md-icon>
+                            Add Asset Item
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button class="md-primary"
+                                   ng-click="FixedAsset.UpdateAsset($event)">
+                            <md-icon class="material-icons"
+                                     aria-label="Edit"
+                                     alt="Update Asset Item"
+                                     aria-hidden="true">
+                                edit
+                            </md-icon>
+                            Update Asset Item
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button class="md-primary"
+                                   ng-click="FixedAsset.Dispose($event)">
+                            <md-icon class="material-icons"
+                                     aria-label="Dispose"
+                                     alt="Dispose"
+                                     aria-hidden="true">
+                                delete_forever
+                            </md-icon>
+                            Dispose Asset Item
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button class="md-primary"
+                                   ng-click="FixedAsset.SyncMasterData($event)">
+                            <md-icon class="material-icons"
+                                     aria-label="Sync Master Data"
+                                     alt="Sync Master Data"
+                                     aria-hidden="true">
+                                cloud_download
+                            </md-icon>
+                            Sync Master Data
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </div>
+    </div>
+    <div layout="column">
+        <div class="padding-l8r9">
+            <md-progress-linear class="md-hue-1"
+                                md-mode="indeterminate"
+                                ng-disabled="isDisabled">
+            </md-progress-linear>
+        </div>
+        <div>
+            <table id="TblFixedAsset"
+                   class="display mdl-data-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Asset Code</th>
+                        <th>Description</th>
+                        <th>UOM</th>
+                        <th>Quantity</th>
+                        <th>Serial #</th>
+                        <th>Unit Cost</th>
+                        <th>Date In Service</th>
+                        <th>Usefull Life</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <div class="md-dialog">
+        <div class="md-dialog-container" id="AssignAsset">
+            <md-dialog aria-label="AssignAsset" class="md-dialog-lg">
+                <md-toolbar class="bg-blue">
+                    <div class="md-toolbar-tools">
+                        <h2>Assign Asset</h2>
+                        <span flex></span>
+                        <md-button class="md-icon-button" ng-click="cancel()">
+                            <md-icon class="material-icons"
+                                     aria-label="Close"
+                                     alt="Close"
+                                     aria-hidden="true">
+                                close
+                            </md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-dialog-content>
+                    <form name="AssignForm">
+                        <div class="padding-0"
+                             layout-gt-sm="row"
+                             layout-align="start center">
+                            <div class="padding-t6">
+                                <md-datepicker ng-model="TransDate"
+                                               md-placeholder="Enter date"
+                                               md-open-on-focus
+                                               class="md-primary"></md-datepicker>
+                            </div>
+                            <div flex-gt-sm>
+                                <md-input-container class="md-block">
+                                    <label>Business Units</label>
+                                    <md-select name="BusinessUnit"
+                                               ng-model="BusinessUnit"
+                                               required
+                                               ng-change="FixedAsset.ChangeBusinessUnits()">
+                                        <md-option ng-value="bu.BUNT"
+                                                   ng-repeat="bu in BusinessUnits">{{ bu.BUNT }}</md-option>
+                                    </md-select>
+                                    <div class="errors" ng-messages="AssignForm.BusinessUnit.$error">
+                                        <div ng-message="required">Required</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div flex-gt-sm>
+                                <md-input-container class="md-block">
+                                    <label>Departments</label>
+                                    <md-select name="Department"
+                                               ng-model="Department"
+                                               required
+                                               ng-change="FixedAsset.ChangeDepartments()">
+                                        <md-option ng-value="d.DPRT"
+                                                   ng-repeat="d in Departments">{{ d.DPRT }}</md-option>
+                                    </md-select>
+                                    <div class="errors" ng-messages="AssignForm.Department.$error">
+                                        <div ng-message="required">Required</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div class="padding-0"
+                             layout-gt-sm="row"
+                             layout-align="end center">
+                            <div flex-gt-sm>
+                                <md-input-container class="md-block">
+                                    <label>Name</label>
+                                    <md-select name="Name"
+                                               ng-model="Name"
+                                               required
+                                               ng-change="FixedAsset.ChangeNames()">
+                                        <md-option ng-value="n.EMID"
+                                                   ng-repeat="n in Names">{{ n.FNAM + " " + n.LNAM }}</md-option>
+                                    </md-select>
+                                    <div class="errors" ng-messages="AssignForm.Name.$error">
+                                        <div ng-message="required">Required</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div class="padding-t21"
+                                 flex-gt-sm>
+                                <md-input-container class="md-block">
+                                    <label>Position</label>
+                                    <input ng-model="Position" disabled>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </form>
+                    <table id="TblMR" class="mdl-data-table">
+                        <thead>
+                            <tr>
+                                <th>Asset Code</th>
+                                <th>Description</th>
+                                <th>UOM</th>
+                                <th>Quantity</th>
+                                <th>Serial #</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </md-dialog-content>
+                <md-dialog-actions layout="row" layout-align="center center">
+                    <md-button class="md-raised md-primary" ng-click="FixedAsset.SaveMR($event)">
+                        Save
+                    </md-button>
+                </md-dialog-actions>
+            </md-dialog>
+        </div>
+    </div>
+    <div class="md-dialog">
+        <div class="md-dialog-container" id="Dispose">
+            <md-dialog aria-label="Dispose" class="md-dialog-md">
+                <md-toolbar class="bg-blue">
+                    <div class="md-toolbar-tools">
+                        <h2>Dispose Asset</h2>
+                        <span flex></span>
+                        <md-button class="md-icon-button" ng-click="cancel()">
+                            <md-icon class="material-icons"
+                                     aria-label="Close"
+                                     alt="Close"
+                                     aria-hidden="true">
+                                close
+                            </md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-dialog-content>
+                    <div class="padding-0"
+                         layout-gt-sm="column">
+                        <div class="padding-t21"
+                             flex-gt-sm>
+                            <md-input-container class="md-block">
+                                <label>Remarks</label>
+                                <textarea ng-model="Remarks"
+                                          rows="5"></textarea>
+                            </md-input-container>
+                        </div>
+                    </div>
+                </md-dialog-content>
+                <md-dialog-actions layout="row" layout-align="center center">
+                    <md-button class="md-raised  md-primary" ng-click="FixedAsset.SaveDispose($event)">
+                        Save
+                    </md-button>
+                </md-dialog-actions>
+            </md-dialog>
+        </div>
+    </div>
+    <div class="md-dialog">
+        <div class="md-dialog-container" id="AddAsset">
+            <md-dialog aria-label="Add Asset">
+                <md-toolbar class="bg-blue">
+                    <div class="md-toolbar-tools">
+                        <h2>Add Asset</h2>
+                        <span flex></span>
+                        <md-button class="md-icon-button" ng-click="cancel()">
+                            <md-icon class="material-icons"
+                                     aria-label="Close"
+                                     alt="Close"
+                                     aria-hidden="true">
+                                close
+                            </md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-dialog-content>
+                    <form name="AddForm">
+                        <div layout="row"
+                             layout-align="end center">
+                            <div flex-gt-sm>
+                                <md-input-container class="md-block">
+                                    <label>Assets Groups</label>
+                                    <md-select ng-model="FAssetGroup" ng-change="FixedAsset.ChangeGroups(1)">
+                                        <md-option ng-value="ag.AGRP"
+                                                   ng-repeat="ag in AssetsGoups">{{ ag.AGRP }}</md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <div flex-gt-sm>
+                                <md-input-container class="md-block">
+                                    <label>Assets Types</label>
+                                    <md-select ng-model="FAssetType">
+                                        <md-option ng-value="at.ATYP"
+                                                   ng-repeat="at in AssetsTypes">{{ at.ATYP }}</md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <div class="padding-t21"
+                                 flex-gt-sm>
+                                <md-input-container class="md-block">
+                                    <label>Asset Code</label>
+                                    <input name="AssetCode"
+                                           required
+                                           ng-model="AssetCode">
+                                    <div ng-messages="AddForm.AssetCode.$error">
+                                        <div ng-message="required">Required</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div layout="row">
+                            <div flex-gt-sm>
+                                <md-input-container class="md-block">
+                                    <label>Description</label>
+                                    <input name="Description"
+                                           required
+                                           ng-model="Description">
+                                    <div ng-messages="AddForm.Description.$error">
+                                        <div ng-message="required">Required</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div flex-gt-sm>
+                                <md-input-container class="md-block">
+                                    <label>Serial #</label>
+                                    <input name="Serial"
+                                           required
+                                           ng-model="Serial">
+                                    <div ng-messages="AddForm.Serial.$error">
+                                        <div ng-message="required">Required</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div flex-gt-sm>
+                                <md-input-container class="md-block">
+                                    <label>Useful Life</label>
+                                    <input name="UsefulLife"
+                                           required
+                                           ng-model="UsefulLife">
+                                    <div ng-messages="AddForm.UsefulLife.$error">
+                                        <div ng-message="required">Required</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                        <div layout="row"
+                             layout-align="center center">
+                            <div flex-gt-sm>
+                                <md-datepicker ng-model="DateInService"
+                                               md-placeholder="Enter date"
+                                               md-open-on-focus
+                                               class="md-primary"></md-datepicker>
+                            </div>
+                            <div flex-gt-sm>
+                                <md-input-container class="md-block">
+                                    <label>UOM</label>
+                                    <md-select ng-model="UOM">
+                                        <md-option ng-value="um.ATYP"
+                                                   ng-repeat="um in UOMs">{{ um.UMEA }}</md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <div class="padding-t21"
+                                 flex-gt-sm>
+                                <md-input-container class="md-block">
+                                    <label>Cost</label>
+                                    <input name="Cost"
+                                           required
+                                           ng-model="Cost">
+                                    <div ng-messages="AddForm.Cost.$error">
+                                        <div ng-message="required">Required</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </form>
+                </md-dialog-content>
+                <md-dialog-actions layout="row" layout-align="center center">
+                    <md-button class="md-raised  md-primary" ng-click="FixedAsset.SaveAssetItem($event)">
+                        Save
+                    </md-button>
+                </md-dialog-actions>
+            </md-dialog>
+        </div>
+    </div>
+    <div class="md-dialog">
+        <div class="md-dialog-container" id="SyncMasterData">
+            <md-dialog aria-label="Add Asset">
+                <md-toolbar class="bg-blue">
+                    <div class="md-toolbar-tools">
+                        <h2>Sync Master Data</h2>
+                        <span flex></span>
+                        <md-button class="md-icon-button" ng-click="cancel()">
+                            <md-icon class="material-icons"
+                                     aria-label="Close"
+                                     alt="Close"
+                                     aria-hidden="true">
+                                close
+                            </md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-dialog-content>
+                    <input type="file"
+                           ng-model="File">
+                </md-dialog-content>
+                <md-dialog-actions layout="row" layout-align="center center">
+                    <md-button class="md-raised md-primary"
+                               ng-click="FixedAsset.StartSync($event)">
+                        Start
+                    </md-button>
+                </md-dialog-actions>
+            </md-dialog>
+        </div>
+    </div>
+</div>
